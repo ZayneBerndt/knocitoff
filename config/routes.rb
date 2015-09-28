@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
+  get 'items/create'
+
+  get 'items/destroy'
+
+  get 'create/destroy'
+
   devise_for :users
-  resources :users
-  
+  resources :users do
+    resources :items, only: [:create, :destroy]
+  end 
+
+
   get 'welcome/index'
 
   get 'welcome/about'
