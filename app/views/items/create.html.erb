@@ -1,2 +1,7 @@
-<h1>Items#create</h1>
-<p>Find me in app/views/items/create.html.erb</p>
+ <h1>New Topic</h1>
+ 
+<%= form_for [@user, @item] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit "Create Item" %>
+<% end %>
