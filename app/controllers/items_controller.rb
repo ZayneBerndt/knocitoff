@@ -8,24 +8,25 @@ class ItemsController < ApplicationController
   def create
     @user = current_user
     @item = current_user.items.build(params[:id])
-    if @item.save 
-      flash[:notice] = "Item created succesfully"
-      
-    else 
-      flash[:error] = "Something went wrong. Please try again."
-        render :new # Draws new action again. 
+  if @item.save 
+    flash[:notice] = "Item created succesfully"
+    redirect_to @items
+  else 
+     flash[:error] = "Something went wrong. Please try again."
+     render :new # Draws new action again. 
   end
 end 
+ 
 
-
-  def destroy
-    @item = Item.find(params[:id])
-    if @item.destroy 
-      flash[:notice] =  "\"#{@item.name}\" was deleted succesfully."
-      
-    else 
-      flash[:error] = "There was an error deleting your item"
-        render :show
+ def destroy
+    @user = current_user 
+    @item = current_user.items.destroy(params[:id]
+    
+  if @item.destroy 
+    flash[:notice] =  "\"#{@item.name}\" was deleted succesfully."
+  else 
+    flash[:error] = "There was an error deleting your item"
+    render :show
     end 
   end 
 
@@ -40,10 +41,10 @@ end
 
   def update
     #load message from params 
-    if @item.update_attributes(message_params)
+  if @item.update_attributes(message_params)
       #load flash 
       #redirect message 
-    else 
+  else 
       #load flash 
       #render action we came from 
     end 
