@@ -26,8 +26,12 @@ end
     flash[:notice] =  "\"#{@item.name}\" was deleted succesfully."
   else 
     flash[:error] = "There was an error deleting your item"
-    render :show
     end 
+
+     respond_to do |format|
+       format.html
+       format.js
+     end
   end 
 
 
