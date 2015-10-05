@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   get 'create/destroy'
 
   devise_for :users
-  resources :users do
-    resources :items, only: [:create, :destroy]
+  resources :users, only: [:show] do
+    resources :items, only: [:create]
   end 
 
 
