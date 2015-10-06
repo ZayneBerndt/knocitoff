@@ -1,7 +1,6 @@
  <% if @item.destroyed? %>
-   $('#item-' +<%= @item.id %>).hide();
+   $('#item-' +<%= @item.id %>).fadeOut(1300);
     $('.js-items-count').html("<%= pluralize(@item.user.item.count, 'item') %>");
-
  <% else %>
    $('#item-' +<%= @item.id %>).prepend("<div class='alert alert-danger'><%= flash[:error] %></div>");
  <% end %>
