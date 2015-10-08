@@ -1,25 +1,32 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
- @import "bootstrap-sprockets";
- @import "bootstrap";
 
- user-info {
-   margin-top: 9px;
- }
- 
- .nav {
-   margin-top: 5px;
- }
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Knocitoff</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+    <ul class="nav nav-tabs">
+      <li><%= link_to "knocitoff", root_path %></li>
+
+      <div class="pull-right user-info">
+        <% if current_user %>
+          Hello <%= link_to current_user.email, edit_user_registration_path %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "Sign In", new_user_session_path %> or
+          <%= link_to "Sign Up", new_user_registration_path %>
+        <% end %>
+      </div>
+    </ul>
+
+
+    <%= render partial: "common/flash" %>
+
+    <%= yield %>
+  </div>
+
+</body>
+</html>

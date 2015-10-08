@@ -1,27 +1,11 @@
-<div class="col-md-8">
-     <div class="media">
-       <div class="media-body">
-           <h2 class="media-heading"><%= @user.name %></h2>
-           <p class="media-body"><%= @user.email %></p>
-           <br>
-           <h2 class="media-heading">My To-Do Items</h2>
-           <div class="row">
-             <div class="col-md-6">
-               
-             </div>
-             <div class="col-md-6">
-               
-             </div>
-           </div>
-           <div class='js-items'>
-             <%= render partial: 'items/item', collection: @items %>
-           </div>
-           <br>
-         <% if policy(@item).create? %>
-           <div class='new-item'>
-             <%= render partial: 'items/form', locals: { user: @user, item: @item } %>
-           </div>
-         <% end %>
-        </div>
-     </div>
-    </div>
+
+<h1>Hello, <%= @user.name %></h1>
+
+<h3>Your to-do list items</h3>
+
+
+
+<%= render partial: 'items/form'%>
+<div class="js-items">
+<%= render partial: 'items/item', collection: @items%>
+</div>

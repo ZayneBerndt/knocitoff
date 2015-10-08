@@ -10,9 +10,9 @@
           <%=item.days_left %>
         </div>
         <div class="col-md-1">+         
-           <% if policy(item).destroy? %>
-            <%= link_to "Delete", item, method: :delete, remote: true class: 'glyphicon glyphicon-ok' %>
-          <% end %>
+           <%# if policy(item).destroy? %>
+            <%= link_to "Delete", user_item_path(current_user, item), method: :delete, remote: true, class: 'glyphicon glyphicon-ok' %>
+          <% #end %>
         </div>
       </div>
     </small>

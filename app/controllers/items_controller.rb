@@ -7,18 +7,24 @@ class ItemsController < ApplicationController
 
   def create
     @item = current_user.items.build(item_params)
+    @new_item = Item.new
   if @item.save 
     flash[:notice] = "Item created succesfully"
+  
   else 
      flash[:error] = "Something went wrong. Please try again."
      render :new # Draws new action again. 
   end
-  redirect_to current_user
+       respond_to do |format|
+       format.html
+       format.js
+     end
 end 
  
 
  def destroy
-    @item = current_user.find(params[:id])
+  @user = current_user
+    @item = Item.find(params[:id])
     
   if @item.destroy 
     flash[:notice] =  "\"#{@item.name}\" was deleted succesfully."
@@ -47,6 +53,6 @@ end
  private 
 
  def item_params 
-  params.require(:items).permit(:name)
+  params.require(:item).permit(:name)
  end
 end 
